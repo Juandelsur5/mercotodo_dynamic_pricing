@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_only_form_view_eco_pricing" model="ir.ui.view">
+        <field name="name">product.template.form.eco.pricing</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_only_form_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@name='sales']" position="after">
+                <page string="Márgenes y Canales (Eco)" name="eco_pricing">
+                    <group string="Costo de Reposición (Base)">
+                        <field name="standard_price" groups="eco_pricing_margen.group_margen_precios" string="Costo Base"/>
+                        <field name="standard_price" readonly="1" groups="!eco_pricing_margen.group_margen_precios" string="Costo Base"/>
+                    </group>
+                    
+                    <group>
+                        <group string="T.A.T">
+                            <field name="x_margin_tat" groups="eco_pricing_margen.group_margen_precios" string="Utilidad (%)" widget="percentage"/>
+                            <field name="x_price_tat_con_iva" readonly="1" decoration-bf="1" string="Precio Total con IVA"/>
+                            <field name="x_price_tat_sin_iva" readonly="1" string="Precio sin IVA (Referencia)"/>
+                        </group>
+
+                        <group string="MAYORISTA">
+                            <field name="x_margin_mayorista" groups="eco_pricing_margen.group_margen_precios" string="Utilidad (%)" widget="percentage"/>
+                            <field name="x_price_mayorista_con_iva" readonly="1" decoration-bf="1" string="Precio Total con IVA"/>
+                            <field name="x_price_mayorista_sin_iva" readonly="1" string="Precio sin IVA (Referencia)"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group string="P.O.S">
+                            <field name="x_margin_pos" groups="eco_pricing_margen.group_margen_precios" string="Utilidad (%)" widget="percentage"/>
+                            <field name="x_price_pos_con_iva" readonly="1" decoration-bf="1" string="Precio Total con IVA"/>
+                            <field name="x_price_pos_sin_iva" readonly="1" string="Precio sin IVA (Referencia)"/>
+                        </group>
+
+                        <group string="OFERTAS">
+                            <field name="x_margin_oferta" groups="eco_pricing_margen.group_margen_precios" string="Utilidad (%)" widget="percentage"/>
+                            <field name="x_price_oferta_con_iva" readonly="1" decoration-bf="1" string="Precio Total con IVA"/>
+                            <field name="x_price_oferta_sin_iva" readonly="1" string="Precio sin IVA (Referencia)"/>
+                        </group>
+                    </group>
+                </page>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
