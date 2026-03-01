@@ -1,14 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <record id="module_category_eco_pricing" model="ir.module.category">
-        <field name="name">Eco Pricing</field>
-        <field name="sequence">10</field>
-    </record>
-
     <record id="group_margen_precios" model="res.groups">
-        <field name="name">margen_precios</field>
-        <field name="category_id" ref="module_category_eco_pricing"/>
-        <field name="comment">Solo este usuario puede gestionar márgenes y listas de precios de clientes.</field>
+        <field name="name">Margen Precios</field>
     </record>
 </odoo>
-
