@@ -1,6 +1,6 @@
 {
     "name": "Mercotodo Dynamic Pricing",
-    "version": "18.0.2.0.0",
+    "version": "18.0.1.0.0",
     "summary": "Multi-company dynamic pricing by channel (AVCO safe)",
     "depends": [
         "base",
