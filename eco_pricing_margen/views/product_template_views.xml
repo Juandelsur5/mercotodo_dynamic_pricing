@@ -1,39 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <odoo>
+
     <record id="view_product_template_form_eco_pricing" model="ir.ui.view">
         <field name="name">product.template.form.eco.pricing</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_only_form_view"/>
         <field name="arch" type="xml">
 
-            <xpath expr="//field[@name='list_price']" position="before">
-                <field name="x_cost_base"/>
+            <!-- OCULTAR COSTO CONTABLE -->
+            <xpath expr="//field[@name='standard_price']" position="attributes">
+                <attribute name="invisible">1</attribute>
             </xpath>
 
-            <xpath expr="//field[@name='list_price']" position="after">
-                <group string="Margen por Canal (Precio Final con IVA)">
-                    <group>
-                        <div class="o_form_label">T.A.T</div>
-                        <field name="x_utility_pct_tat" groups="eco_pricing_margen.group_margen_precios"/>
-                        <field name="x_final_price_tat" readonly="1"/>
-                    </group>
-                    <group>
-                        <div class="o_form_label">P.O.S</div>
-                        <field name="x_utility_pct_pos" groups="eco_pricing_margen.group_margen_precios"/>
-                        <field name="x_final_price_pos" readonly="1"/>
-                    </group>
-                    <group>
-                        <div class="o_form_label">MAYORISTA</div>
-                        <field name="x_utility_pct_mayorista" groups="eco_pricing_margen.group_margen_precios"/>
-                        <field name="x_final_price_mayorista" readonly="1"/>
-                    </group>
-                    <group>
-                        <div class="o_form_label">OFERTAS</div>
-                        <field name="x_utility_pct_oferta" groups="eco_pricing_margen.group_margen_precios"/>
-                        <field name="x_final_price_oferta" readonly="1"/>
-                    </group>
-                </group>
+            <!-- Mostrar SOLO costo comercial -->
+            <xpath expr="//field[@name='standard_price']" position="after">
+                <field name="x_cost_base" string="Costo (Última Factura)"/>
             </xpath>
+
+            <!-- Motor Comercial -->
+            <xpath expr="//field[@name='list_price']" position="after">
+    <group string="Motor Comercial por Canal (Precio Final con IVA)" col="4">
+
+        <separator string="T.A.T" colspan="4"/>
+        <field name="x_utility_pct_tat"/>
+        <field name="x_final_price_tat" widget="monetary"
+               options="{'currency_field': 'currency_id'}"
+               readonly="1"/>
+
+        <separator string="P.O.S" colspan="4"/>
+        <field name="x_utility_pct_pos"/>
+        <field name="x_final_price_pos" widget="monetary"
+               options="{'currency_field': 'currency_id'}"
+               readonly="1"/>
+
+        <separator string="MAYORISTA" colspan="4"/>
+        <field name="x_utility_pct_mayorista"/>
+        <field name="x_final_price_mayorista" widget="monetary"
+               options="{'currency_field': 'currency_id'}"
+               readonly="1"/>
+
+        <separator string="OFERTAS" colspan="4"/>
+        <field name="x_utility_pct_oferta"/>
+        <field name="x_final_price_oferta" widget="monetary"
+               options="{'currency_field': 'currency_id'}"
+               readonly="1"/>
+
+    </group>
+</xpath>
 
         </field>
     </record>
+
 </odoo>
